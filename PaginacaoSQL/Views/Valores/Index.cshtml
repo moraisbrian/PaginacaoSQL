@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Valor>
+
+@{
+    ViewData["Title"] = "Valores";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Conteúdo</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Conteudo</td>
+                <td>@item.Data</td>
+            </tr>
+        }
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3">Nenhum valor encontrado</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination" id="pages"></ul>
+</nav>
+
+<script>
+    const nextValuePage = @(ViewBag.CurrentPage + 1);
+    const previousValuePage = @(ViewBag.CurrentPage - 1);
+    const sectionStartPage = @ViewBag.SectionStartPage;
+    const pagesCount = @ViewBag.Pages;
+    const currentPage = @ViewBag.CurrentPage;
+    const sectionLastPage = @(ViewBag.SectionStartPage + 19);
+</script>
+<script src="~/js/valor.js"></script>
